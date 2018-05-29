@@ -141,7 +141,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("A4E1A2E6-1B07-4116-9410-E79230F5F83A")]
+    [Guid("72382C45-DD07-495C-8E9D-3AD598FF932E")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class Message
     {

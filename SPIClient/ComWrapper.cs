@@ -1,6 +1,7 @@
 ﻿using log4net;
 using log4net.Config;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -16,7 +17,7 @@ namespace SPIClient
     /// This class is wrapper for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("203A61CF-054C-41F5-BFC3-D41C81A7FA61")]
+    [Guid("AA7C0854-4FF3-4EE7-A807-6C534B0B02DC")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class ComWrapper
     {
@@ -56,6 +57,29 @@ namespace SPIClient
         public GetLastTransactionResponse GetLastTransactionResponseInit(Message m)
         {
             return new GetLastTransactionResponse(m);
+        }
+
+        public CashoutOnlyResponse CashoutOnlyResponseInit(Message m)
+        {
+            return new CashoutOnlyResponse(m);
+        }
+
+        public MotoPurchaseResponse MotoPurchaseResponseInit(Message m)
+        {
+            return new MotoPurchaseResponse(m);
+        }
+
+        public SchemeSettlementEntry[] GetSchemeSettlementEntries(TransactionFlowState txState)
+        {
+            var settleResponse = new Settlement(txState.Response);
+            var schemes = settleResponse.GetSchemeSettlementEntries();
+            var schemeList = new List<SchemeSettlementEntry>();
+            foreach (var s in schemes)
+            {
+                schemeList.Add(s);
+            }
+
+            return schemeList.ToArray();
         }
 
         public void Main(Spi spi, Int32 cBTxStatePtr, Int32 cBPairingFlowStatePtr, Int32 cBsecretsPtr, Int32 cBStatusPtr)

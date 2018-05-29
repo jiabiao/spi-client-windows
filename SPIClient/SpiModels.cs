@@ -29,7 +29,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("DEFF7B6F-FF0D-49A6-BE16-F319C8DE7FF8")]
+    [Guid("52780061-61EF-42E5-9481-B2A8914C71D3")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SpiStatusEventArgs : EventArgs
     {
@@ -64,7 +64,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("01E09B8A-0B9C-4BE1-B773-B29819BCA306")]
+    [Guid("2A0064B5-063A-432D-BB20-F631EB52A3DD")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PairingFlowState : EventArgs
     {
@@ -123,7 +123,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("1CE50B82-1E16-4277-AEFF-ADB39B92454E")]
+    [Guid("248C0C2C-54DB-4D8A-A9D1-A59CF681E4F7")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class InitiateTxResult
     {
@@ -157,7 +157,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("B3679131-9789-4D42-BAEA-DE9D14A10E28")]
+    [Guid("DA9F8F9B-E75E-4110-9264-B2E183971567")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class MidTxResult
     {
@@ -190,7 +190,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("A3679131-9789-4C42-BAEA-DE8D14A10E20")]
+    [Guid("F77EA2DB-8E3D-44DA-927C-BBB2FF1BBA6F")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class TransactionFlowState : EventArgs
     {
@@ -413,6 +413,13 @@ namespace SPIClient
         }
     }
 
+    /// <summary>
+    /// Represents the State during a TransactionFlow
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("20BD68BA-EC84-40C0-B95D-57964D798F2E")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SpiConfig
     {
         /// <summary>

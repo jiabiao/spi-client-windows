@@ -59,7 +59,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("3481317A-68B7-4950-B28F-8716E46B1BEA")]
+    [Guid("23BDA06E-26FF-4C86-9427-771BBABF7B13")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PurchaseResponse
     {
@@ -244,7 +244,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("76FB0DEA-A885-4FCD-BE73-7A1FB92AF255")]
+    [Guid("0095006C-CE1D-409B-96C6-FBDE06088CD6")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class GetLastTransactionResponse
     {
@@ -408,7 +408,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("E86BF3F2-45D6-4F98-AC76-48D34B9ECDD0")]
+    [Guid("D5497934-6101-4109-8345-7A5CD0BA7CBD")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class RefundResponse
     {
@@ -538,7 +538,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("B4BA0857-E8EF-416C-9483-C3DF3E9BD8E6")]
+    [Guid("0B46A141-F2F9-4E60-BB7A-905B4D596FA3")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SignatureRequired
     {
@@ -624,18 +624,36 @@ namespace SPIClient
             return new Message(RequestIdHelper.Id("moto"), Events.MotoPurchaseRequest, data, true);
         }
     }
-    
+
+    /// <summary>
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("612058EC-212B-487F-8B13-0452ECF5E560")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class MotoPurchaseResponse
     {
         public string PosRefId { get; }
         public PurchaseResponse PurchaseResponse { get; }
-        
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public MotoPurchaseResponse() { }
+
         public MotoPurchaseResponse(Message m)
         {
             PurchaseResponse = new PurchaseResponse(m);
             PosRefId = PurchaseResponse.PosRefId;
         }
     }
+
+    /// <summary>
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("6739E114-B111-4A1B-A574-CB0F614DB1BD")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PhoneForAuthRequired
     {
         public string RequestId { get; }

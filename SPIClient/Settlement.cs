@@ -30,7 +30,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("9771AF6A-CFC5-458B-AB1B-FB6F64FC13B4")]
+    [Guid("4EE6064F-C82B-43F0-ADD0-84222E35CACD")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class Settlement
     {
@@ -120,12 +120,24 @@ namespace SPIClient
         }
     }
 
+    /// <summary>
+    /// Represents a Respsonse for a Request to Settle
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("10E62317-0C5E-4266-9F28-EB80B7E84E1D")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SchemeSettlementEntry
     {
         public string SchemeName;
         public bool SettleByAcquirer;
         public int TotalCount;
         public int TotalValue;
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public SchemeSettlementEntry() { }
 
         public SchemeSettlementEntry(string schemeName, bool settleByAcquirer, int totalCount, int totalValue)
         {

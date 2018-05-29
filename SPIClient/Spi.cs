@@ -10,7 +10,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("DB6EF094-D435-4429-9B97-E5E672281343")]
+    [Guid("4A809FA7-4951-49F0-BF75-DA59F4E0B168")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class Spi : IDisposable
     {
