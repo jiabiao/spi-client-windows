@@ -59,7 +59,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("23BDA06E-26FF-4C86-9427-771BBABF7B13")]
+    [Guid("E870BD11-A38A-4235-A465-6C75B0784C6D")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PurchaseResponse
     {
@@ -244,7 +244,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("0095006C-CE1D-409B-96C6-FBDE06088CD6")]
+    [Guid("EB7A3B80-6980-40D0-8F29-E716C5A402DE")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class GetLastTransactionResponse
     {
@@ -408,7 +408,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("D5497934-6101-4109-8345-7A5CD0BA7CBD")]
+    [Guid("97D7A75C-D587-43A0-A3E3-9B42F456922D")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class RefundResponse
     {
@@ -538,13 +538,18 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("0B46A141-F2F9-4E60-BB7A-905B4D596FA3")]
+    [Guid("22870044-40C0-4C25-948E-6DC17BBC2500")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SignatureRequired
     {
         public string RequestId { get; }
         public string PosRefId { get; }
         private string _receiptToSign;
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public SignatureRequired() { }
 
         public SignatureRequired(Message m)
         {
@@ -629,7 +634,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("612058EC-212B-487F-8B13-0452ECF5E560")]
+    [Guid("9C476014-6C0B-41F1-9C81-396D7E23B835")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class MotoPurchaseResponse
     {
@@ -652,7 +657,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("6739E114-B111-4A1B-A574-CB0F614DB1BD")]
+    [Guid("79048ED1-22D1-4C60-8B81-471CE03C2F6D")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PhoneForAuthRequired
     {
@@ -661,7 +666,12 @@ namespace SPIClient
         
         private string _phoneNumber;
         private string _merchantId;
-        
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public PhoneForAuthRequired() { }
+
         public PhoneForAuthRequired(Message m)
         {
             RequestId = m.Id;

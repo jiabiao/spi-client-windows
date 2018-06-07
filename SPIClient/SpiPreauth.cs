@@ -1,13 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 
 namespace SPIClient
 {
+    /// <summary>
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("3ED794E7-0212-469A-A1EE-F7AA612B6D63")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SpiPreauth
     {
         private readonly Spi _spi;
         private readonly object _txLock;
 
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public SpiPreauth() { } 
 
         internal SpiPreauth(Spi spi, object txLock)
         {

@@ -7,7 +7,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("EAD2447D-CEFF-4DC8-970A-57F5B3F1D489")]
+    [Guid("53543801-D3AF-4BF7-A45F-3923D3AC9D2A")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class Secrets : EventArgs
     {

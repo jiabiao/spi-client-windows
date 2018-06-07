@@ -29,10 +29,15 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("52780061-61EF-42E5-9481-B2A8914C71D3")]
+    [Guid("C8BC4114-2815-43B3-ADF6-CB29601EE068")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SpiStatusEventArgs : EventArgs
     {
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public SpiStatusEventArgs() { }
+
         public SpiStatus SpiStatus { get; internal set; }
     }
 
@@ -64,10 +69,15 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("2A0064B5-063A-432D-BB20-F631EB52A3DD")]
+    [Guid("F47F8302-E328-4E3F-9F4C-D1DE80F3AF4A")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PairingFlowState : EventArgs
     {
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public PairingFlowState() { }
+
         /// <summary>
         /// Some text that can be displayed in the Pairing Process Screen
         /// that indicates what the pairing process is up to.
@@ -123,7 +133,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("248C0C2C-54DB-4D8A-A9D1-A59CF681E4F7")]
+    [Guid("7420CB7B-C57C-4A2F-B4C0-76AF2EF167A4")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class InitiateTxResult
     {
@@ -157,7 +167,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("DA9F8F9B-E75E-4110-9264-B2E183971567")]
+    [Guid("86AB8E13-5CF2-4600-8AD4-BF63D31FB4F3")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class MidTxResult
     {
@@ -190,10 +200,15 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("F77EA2DB-8E3D-44DA-927C-BBB2FF1BBA6F")]
+    [Guid("14FAB9F4-EFCF-416F-B835-5EE44A714F55")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class TransactionFlowState : EventArgs
     {
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public TransactionFlowState() { }
+
         /// <summary>
         ///  The id given to this transaction
         /// </summary>
@@ -418,10 +433,15 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("20BD68BA-EC84-40C0-B95D-57964D798F2E")]
+    [Guid("5825E678-0C4E-46EA-BC97-C0946570EA1C")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SpiConfig
     {
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public SpiConfig() { }
+
         /// <summary>
         /// 
         /// </summary>
