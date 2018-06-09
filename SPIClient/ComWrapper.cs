@@ -229,7 +229,14 @@ namespace SPIClient
 
         public string GetPosVersion()
         {
-            return AssemblyInfo.GetAssemblyVersion();
+            if (Assembly.GetEntryAssembly() == null)
+            {
+                return "0";
+            }
+            else
+            {
+                return Assembly.GetEntryAssembly().GetName().Version.ToString();
+            }
         }
 
         public string NewBillId()
@@ -259,21 +266,5 @@ namespace SPIClient
             //// TODO: Do exception handling for File access issues and supply sane defaults if it's unavailable.   
             XmlConfigurator.ConfigureAndWatch(new FileInfo(LOG_CONFIG_FILE));
         }
-    }
-
-    /// <summary>
-    /// This class is wrapper for COM interop.
-    /// </summary>
-    [ComVisible(true)]
-    [Guid("A7489B50-3937-4EB3-B08D-ADD20BAEBE0B")]
-    [ClassInterface(ClassInterfaceType.AutoDual)]
-    public class AssemblyInfo
-    {
-        public static string GetAssemblyVersion()
-        {
-            return _version;
-        }
-
-        private static readonly string _version = Assembly.GetEntryAssembly().GetName().Version.ToString();
     }
 }
