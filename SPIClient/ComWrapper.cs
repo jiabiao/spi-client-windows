@@ -13,14 +13,14 @@ namespace SPIClient
     public delegate void CBPairingFlowStateChanged(PairingFlowState pairingFlowState);
     public delegate void CBSecretsChanged(Secrets secrets);
     public delegate void CBSpiStatusChanged(SpiStatusEventArgs status);
-    public delegate BillStatusResponse CBPayAtTableGetBillStatus([MarshalAs(UnmanagedType.LPWStr)] string billId, [MarshalAs(UnmanagedType.LPWStr)] string tableId, [MarshalAs(UnmanagedType.LPWStr)] string operatorId);
-    public delegate BillStatusResponse CBPayAtTableBillPaymentReceived(BillPayment billPayment, [MarshalAs(UnmanagedType.LPWStr)] string updatedBillData);
+    public delegate void CBPayAtTableGetBillStatus(BillStatusInfo billStatusInfo, out BillStatusResponse billStatusResponse);
+    public delegate void CBPayAtTableBillPaymentReceived(BillPaymentInfo billPaymentInfo, out BillStatusResponse billStatusResponse);
 
     /// <summary>
     /// This class is wrapper for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("5CFFA3B2-7141-4B1A-A9D0-7EE1B15AE1C2")]
+    [Guid("C058E559-5CCF-40E9-8571-A0407109AC4C")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class ComWrapper
     {
@@ -109,20 +109,27 @@ namespace SPIClient
             callBackStatus(status);
         }
 
-        private BillStatusResponse OnPayAtTableGetBillStatus([MarshalAs(UnmanagedType.LPWStr)] string billId, [MarshalAs(UnmanagedType.LPWStr)] string tableId, [MarshalAs(UnmanagedType.LPWStr)] string operatorId)
+        private BillStatusResponse OnPayAtTableGetBillStatus(string billId, string tableId, string operatorId)
         {
-            if (string.IsNullOrWhiteSpace(billId)) { billId = "0"; }
-            if (string.IsNullOrWhiteSpace(tableId)) { tableId = "0"; }
-            if (string.IsNullOrWhiteSpace(operatorId)) { operatorId = "0"; }
+            BillStatusInfo billStatusInfo = new BillStatusInfo();
+            billStatusInfo.BillId = billId;
+            billStatusInfo.TableId = tableId;
+            billStatusInfo.OperatorId = operatorId;
 
-            return callBackPayAtTableGetBillStatus(billId, tableId, operatorId);
+            BillStatusResponse billStatusResponse = new BillStatusResponse();
+            callBackPayAtTableGetBillStatus(billStatusInfo, out billStatusResponse);
+            return billStatusResponse;
         }
 
-        private BillStatusResponse OnPayAtTableBillPaymentReceived(BillPayment billPayment, [MarshalAs(UnmanagedType.LPWStr)] string updatedBillData)
+        private BillStatusResponse OnPayAtTableBillPaymentReceived(BillPayment billPayment, string updatedBillData)
         {
-            if (string.IsNullOrWhiteSpace(updatedBillData)) { updatedBillData = "updatedBillData"; }
+            BillPaymentInfo billPaymentInfo = new BillPaymentInfo();
+            billPaymentInfo.BillPayment = billPayment;
+            billPaymentInfo.UpdatedBillData = updatedBillData;
 
-            return callBackPayAtTableBillPaymentReceived(billPayment, updatedBillData);
+            BillStatusResponse billStatusResponse = new BillStatusResponse();
+            callBackPayAtTableBillPaymentReceived(billPaymentInfo, out billStatusResponse);
+            return billStatusResponse;
         }
 
         public string Get_Id(string prefix)
@@ -266,5 +273,37 @@ namespace SPIClient
             //// TODO: Do exception handling for File access issues and supply sane defaults if it's unavailable.   
             XmlConfigurator.ConfigureAndWatch(new FileInfo(LOG_CONFIG_FILE));
         }
+    }
+
+    /// <summary>
+    /// This class is wrapper for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("6E2E52D6-CEF8-4CF9-96CF-80E5EDD106D9")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+    public class BillStatusInfo
+    {
+        public BillStatusInfo() { }
+
+        public string BillId { get; set; }
+
+        public string TableId { get; set; }
+
+        public string OperatorId { get; set; }
+    }
+
+    /// <summary>
+    /// This class is wrapper for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("FA67C408-C88A-435C-B59C-C30DFB47966C")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+    public class BillPaymentInfo
+    {
+        public BillPaymentInfo() { }
+
+        public BillPayment BillPayment { get; set; }
+
+        public string UpdatedBillData { get; set; }
     }
 }

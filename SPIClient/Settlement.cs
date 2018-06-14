@@ -30,7 +30,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("C5D71BA7-9E06-42DF-9635-50CD170B6DB6")]
+    [Guid("3C90865C-89D4-4F48-868C-27ABDD497BCC")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class Settlement
     {
@@ -125,7 +125,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("B440B785-D7E8-44E1-BFC3-4745F98ACA43")]
+    [Guid("E0612D14-EEB3-45D1-8606-E930B63CF462")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SchemeSettlementEntry
     {

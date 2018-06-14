@@ -13,7 +13,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("CE199ED8-3E27-4CD2-B318-8CA1241E0B0A")]
+    [Guid("4B48495F-381C-4ABC-B0D9-422B837EFE52")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SpiPayAtTable
     {
@@ -70,7 +70,7 @@ namespace SPIClient
             var tableId = m.GetDataStringValue("table_id");
 
             // Ask POS for Bill Details for this tableId, inluding encoded PaymentData
-            var billStatus = GetBillStatus(null, tableId, operatorId);
+            var billStatus = GetBillStatus("", tableId, operatorId);
             billStatus.TableId = tableId;
             if (billStatus.TotalAmount <= 0)
             {

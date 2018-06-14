@@ -9,16 +9,18 @@ namespace SPIClient
 {
 
     /// <summary>
-    /// These attributes work for COM interop.
-    /// </summary>
-    [ComVisible(true)]
-    [Guid("BA9FB344-1D93-425A-A727-A19334134905")]
-    [ClassInterface(ClassInterfaceType.AutoDual)]
-    /// <summary>
     /// This class represents the BillDetails that the POS will be asked for throughout a PayAtTable flow.
     /// </summary>
+    [ComVisible(true)]
+    [Guid("527CE786-B76D-44B5-A16C-011BB3B66BA2")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class BillStatusResponse
     {
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public BillStatusResponse() { }
+
         /// <summary>
         /// Set this Error accordingly if you are not able to return the BillDetails that were asked from you.
         /// </summary>
@@ -101,11 +103,6 @@ namespace SPIClient
             }
             return new Message(messageId, Events.PayAtTableBillDetails, data, true);
         }
-
-        /// <summary>
-        /// This default stucture works for COM interop.
-        /// </summary>
-        public BillStatusResponse() { }
     }
 
     public enum BillRetrievalResult
@@ -126,7 +123,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("2A3751C1-3FBE-4694-B7C1-ABCF1652FC35")]
+    [Guid("370C23FB-CB85-4917-8D85-7A0A110D83A1")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class BillPayment
     {
@@ -193,7 +190,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("3E8645BC-7E69-4C70-A8B9-2E4EB20DE5E4")]
+    [Guid("FE4A6F54-B619-4666-883A-AE13CCD3EC6A")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PayAtTableConfig
     {
