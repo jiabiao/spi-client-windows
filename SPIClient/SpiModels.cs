@@ -29,7 +29,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("6E4E16DC-18E2-4759-8F1A-A12713F42A4F")]
+    [Guid("275A3935-97D0-4DF3-A07D-3254F086BFEE")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SpiStatusEventArgs : EventArgs
     {
@@ -69,7 +69,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("F818FAD5-34B5-4F41-9045-E6262B7F360B")]
+    [Guid("2C05BA9B-82AD-4A51-A2D7-FB681C9DB85B")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PairingFlowState : EventArgs
     {
@@ -133,7 +133,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("F017E074-FCA9-49B1-8E99-ACD2D7C0E1C2")]
+    [Guid("8523EEAB-14B4-4909-AA99-396FF37F86BC")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class InitiateTxResult
     {
@@ -167,7 +167,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("7A04911C-4786-4469-A481-8CC7B6A63C23")]
+    [Guid("7B1299F9-860E-4F58-A392-929AD4014E93")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class MidTxResult
     {
@@ -200,7 +200,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("4705B5C5-3E02-4970-95E4-E7FA94BB3C1C")]
+    [Guid("290FEEE1-D213-41D3-A1BC-4FBD1644AF3A")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class TransactionFlowState : EventArgs
     {
@@ -433,7 +433,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("023B2D7D-FDEA-4CA2-A580-D2D926CA8B8F")]
+    [Guid("E2E3FFC3-4CEA-4016-BF49-8C70D0314A43")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SpiConfig
     {

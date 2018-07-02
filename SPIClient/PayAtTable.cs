@@ -12,7 +12,7 @@ namespace SPIClient
     /// This class represents the BillDetails that the POS will be asked for throughout a PayAtTable flow.
     /// </summary>
     [ComVisible(true)]
-    [Guid("527CE786-B76D-44B5-A16C-011BB3B66BA2")]
+    [Guid("78A79782-A33E-4D5F-95F3-8FF48090CF3E")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class BillStatusResponse
     {
