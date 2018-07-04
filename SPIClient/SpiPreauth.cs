@@ -8,7 +8,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("62A20E3F-C7AD-4601-8C18-FE95457CE23F")]
+    [Guid("8A139471-1D4B-41CA-B9AE-726562108C2A")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SpiPreauth
     {

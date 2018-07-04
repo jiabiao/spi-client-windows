@@ -59,7 +59,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("32AC378A-47FA-4A60-A3D9-AD400AD9112A")]
+    [Guid("04FA4EC8-6F57-4B63-8237-F8301E7DB0DC")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PurchaseResponse
     {
@@ -244,7 +244,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("E55A702B-429A-4265-B832-865E56699FFB")]
+    [Guid("9DE0D773-D49B-4A79-8504-4F5AEDC75789")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class GetLastTransactionResponse
     {
@@ -408,7 +408,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("FE1A0321-9D87-40CF-9A7C-FDC130E91ED7")]
+    [Guid("AD006935-6A0A-4F24-98C7-55954640080A")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class RefundResponse
     {
@@ -538,7 +538,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("FCF02F09-675A-4776-8798-90B7CCE13ADE")]
+    [Guid("049109F3-B6ED-488D-B991-00933A2DEA38")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SignatureRequired
     {
@@ -634,7 +634,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("C6416029-79CD-46C3-A174-589ADB14CAA3")]
+    [Guid("FD6BA431-19F7-4D89-9ADE-51DD6F2E05DE")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class MotoPurchaseResponse
     {
@@ -657,7 +657,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("5DCCB76E-40ED-4D36-AE10-ECFE94D49433")]
+    [Guid("CB803CAF-E5C5-45F3-8B32-6FE31A70EE72")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PhoneForAuthRequired
     {

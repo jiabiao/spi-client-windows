@@ -20,7 +20,7 @@ namespace SPIClient
     /// This class is wrapper for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("29671264-8298-4A99-8160-448C1AEEB730")]
+    [Guid("F99A837B-58EE-4BD9-B742-F0EC0655D39B")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class ComWrapper
     {
@@ -279,7 +279,7 @@ namespace SPIClient
     /// This class is wrapper for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("61CA85C3-1EB2-4600-9E40-AAC5FF340E90")]
+    [Guid("B8EC93A1-DD22-4928-96A2-E2B21719D3E2")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class BillStatusInfo
     {
@@ -296,7 +296,7 @@ namespace SPIClient
     /// This class is wrapper for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("C57B9FDC-A4D5-45B0-B07E-BAC93F633194")]
+    [Guid("E277FA15-EAD0-4BDF-8F76-701E2464D0EA")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class BillPaymentInfo
     {

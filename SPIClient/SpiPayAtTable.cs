@@ -13,7 +13,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("8A0AF800-D523-44EC-A43B-5CAC8D748161")]
+    [Guid("9C77D435-D69D-4403-9DEA-9DCEAC66E450")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SpiPayAtTable
     {

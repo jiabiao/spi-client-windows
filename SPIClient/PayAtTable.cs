@@ -12,7 +12,7 @@ namespace SPIClient
     /// This class represents the BillDetails that the POS will be asked for throughout a PayAtTable flow.
     /// </summary>
     [ComVisible(true)]
-    [Guid("78A79782-A33E-4D5F-95F3-8FF48090CF3E")]
+    [Guid("F3190296-2734-42FC-B534-27695295D2B0")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class BillStatusResponse
     {
@@ -123,7 +123,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("370C23FB-CB85-4917-8D85-7A0A110D83A1")]
+    [Guid("2CE8031B-EF7E-4C79-8F98-DD0451FA91EA")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class BillPayment
     {
@@ -190,7 +190,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("FE4A6F54-B619-4666-883A-AE13CCD3EC6A")]
+    [Guid("4AD0D23D-0C3C-4B3A-A3F7-55DD6F1089CC")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PayAtTableConfig
     {
