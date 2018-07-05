@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 
 namespace SPIClient
@@ -7,13 +8,19 @@ namespace SPIClient
     public delegate BillStatusResponse PayAtTableGetBillStatus(string billId, string tableId, string operatorId);
 
     public delegate BillStatusResponse PayAtTableBillPaymentReceived(BillPayment billPayment, string updatedBillData);
-        
+
+    /// <summary>
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("9C77D435-D69D-4403-9DEA-9DCEAC66E450")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SpiPayAtTable
     {
         private readonly Spi _spi;
 
         public PayAtTableConfig Config { get; }
-        
+
         /// <summary>
         /// This delegate will be called when the Eftpos needs to know the current state of a bill for a table. 
         /// <para />
@@ -26,9 +33,14 @@ namespace SPIClient
         /// You need to return the current state of the bill.
         /// </summary>
         public PayAtTableGetBillStatus GetBillStatus;
-        
+
         public PayAtTableBillPaymentReceived BillPaymentReceived;
-        
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public SpiPayAtTable() { }
+
         internal SpiPayAtTable(Spi spi)
         {
             _spi = spi;
@@ -50,29 +62,29 @@ namespace SPIClient
         public void PushPayAtTableConfig()
         {
             _spi._send(Config.ToMessage(RequestIdHelper.Id("patconf")));
-        } 
-        
+        }
+
         internal void _handleGetBillDetailsRequest(Message m)
         {
             var operatorId = m.GetDataStringValue("operator_id");
             var tableId = m.GetDataStringValue("table_id");
 
             // Ask POS for Bill Details for this tableId, inluding encoded PaymentData
-            var billStatus = GetBillStatus(null, tableId, operatorId);
+            var billStatus = GetBillStatus("", tableId, operatorId);
             billStatus.TableId = tableId;
             if (billStatus.TotalAmount <= 0)
             {
                 _log.Info("Table has 0 total amount. not sending it to eftpos.");
                 billStatus.Result = BillRetrievalResult.INVALID_TABLE_ID;
             }
-            
+
             _spi._send(billStatus.ToMessage(m.Id));
         }
 
         internal void _handleBillPaymentAdvice(Message m)
         {
             var billPayment = new BillPayment(m);
-            
+
             // Ask POS for Bill Details, inluding encoded PaymentData
             var existingBillStatus = GetBillStatus(billPayment.BillId, billPayment.TableId, billPayment.OperatorId);
             if (existingBillStatus.Result != BillRetrievalResult.SUCCESS)
@@ -80,9 +92,9 @@ namespace SPIClient
                 _log.Warn("Could not retrieve Bill Status for Payment Advice. Sending Error to Eftpos.");
                 _spi._send(existingBillStatus.ToMessage(m.Id));
             }
-                        
+
             var existingPaymentHistory = existingBillStatus.getBillPaymentHistory();
-            
+
             var foundExistingEntry = existingPaymentHistory.Find(phe => phe.GetTerminalRefId() == billPayment.PurchaseResponse.GetTerminalReferenceId());
             if (foundExistingEntry != null)
             {
@@ -93,7 +105,7 @@ namespace SPIClient
                 _spi._send(existingBillStatus.ToMessage(m.Id));
                 return;
             }
-           
+
             // Let's add the new entry to the history
             var updatedHistoryEntries = new List<PaymentHistoryEntry>(existingPaymentHistory)
             {
@@ -121,10 +133,10 @@ namespace SPIClient
             {
                 updatedBillStatus.BillData = updatedBillData;
             }
-        
+
             _spi._send(updatedBillStatus.ToMessage(m.Id));
         }
-        
+
         internal void _handleGetTableConfig(Message m)
         {
             _spi._send(Config.ToMessage(m.Id));
@@ -133,5 +145,5 @@ namespace SPIClient
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger("spipat");
 
     }
-    
+
 }

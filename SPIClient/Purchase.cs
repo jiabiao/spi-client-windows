@@ -59,7 +59,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("3481317A-68B7-4950-B28F-8716E46B1BEA")]
+    [Guid("04FA4EC8-6F57-4B63-8237-F8301E7DB0DC")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PurchaseResponse
     {
@@ -244,7 +244,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("76FB0DEA-A885-4FCD-BE73-7A1FB92AF255")]
+    [Guid("9DE0D773-D49B-4A79-8504-4F5AEDC75789")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class GetLastTransactionResponse
     {
@@ -408,7 +408,7 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("E86BF3F2-45D6-4F98-AC76-48D34B9ECDD0")]
+    [Guid("AD006935-6A0A-4F24-98C7-55954640080A")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class RefundResponse
     {
@@ -538,13 +538,18 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("B4BA0857-E8EF-416C-9483-C3DF3E9BD8E6")]
+    [Guid("049109F3-B6ED-488D-B991-00933A2DEA38")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class SignatureRequired
     {
         public string RequestId { get; }
         public string PosRefId { get; }
         private string _receiptToSign;
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public SignatureRequired() { }
 
         public SignatureRequired(Message m)
         {
@@ -624,18 +629,36 @@ namespace SPIClient
             return new Message(RequestIdHelper.Id("moto"), Events.MotoPurchaseRequest, data, true);
         }
     }
-    
+
+    /// <summary>
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("FD6BA431-19F7-4D89-9ADE-51DD6F2E05DE")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class MotoPurchaseResponse
     {
         public string PosRefId { get; }
         public PurchaseResponse PurchaseResponse { get; }
-        
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public MotoPurchaseResponse() { }
+
         public MotoPurchaseResponse(Message m)
         {
             PurchaseResponse = new PurchaseResponse(m);
             PosRefId = PurchaseResponse.PosRefId;
         }
     }
+
+    /// <summary>
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("CB803CAF-E5C5-45F3-8B32-6FE31A70EE72")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PhoneForAuthRequired
     {
         public string RequestId { get; }
@@ -643,7 +666,12 @@ namespace SPIClient
         
         private string _phoneNumber;
         private string _merchantId;
-        
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public PhoneForAuthRequired() { }
+
         public PhoneForAuthRequired(Message m)
         {
             RequestId = m.Id;

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 namespace SPIClient
 {
@@ -6,7 +7,7 @@ namespace SPIClient
     {
         public const string AccountVerifyRequest = "account_verify";
         public const string AccountVerifyResponse = "account_verify_response";
-        
+
         public const string PreauthOpenRequest = "preauth";
         public const string PreauthOpenResponse = "preauth_response";
 
@@ -18,13 +19,13 @@ namespace SPIClient
 
         public const string PreauthPartialCancellationRequest = "preauth_partial_cancellation";
         public const string PreauthPartialCancellationResponse = "preauth_partial_cancellation_response";
-       
+
         public const string PreauthCancellationRequest = "preauth_cancellation";
         public const string PreauthCancellationResponse = "preauth_cancellation_response";
 
         public const string PreauthCompleteRequest = "completion";
         public const string PreauthCompleteResponse = "completion_response";
-        
+
     }
 
     public class AccountVerifyRequest
@@ -45,13 +46,24 @@ namespace SPIClient
             return new Message(RequestIdHelper.Id("prav"), PreauthEvents.AccountVerifyRequest, data, true);
         }
     }
-    
+
+    /// <summary>
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("99DC8D6B-E7E3-4480-84EB-B0913F35B551")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class AccountVerifyResponse
     {
         public string PosRefId { get; }
         public PurchaseResponse Details { get; }
 
         private Message _m;
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public AccountVerifyResponse() { }
 
         public AccountVerifyResponse(Message m)
         {
@@ -60,7 +72,7 @@ namespace SPIClient
             _m = m;
         }
     }
-    
+
     public class PreauthOpenRequest
     {
         public string PosRefId { get; }
@@ -132,7 +144,7 @@ namespace SPIClient
             return new Message(RequestIdHelper.Id("prpc"), PreauthEvents.PreauthPartialCancellationRequest, data, true);
         }
     }
-    
+
     public class PreauthExtendRequest
     {
         public string PreauthId { get; }
@@ -176,7 +188,7 @@ namespace SPIClient
             return new Message(RequestIdHelper.Id("prac"), PreauthEvents.PreauthCancellationRequest, data, true);
         }
     }
-    
+
     public class PreauthCompletionRequest
     {
         public string PreauthId { get; }
@@ -201,7 +213,13 @@ namespace SPIClient
             return new Message(RequestIdHelper.Id("prac"), PreauthEvents.PreauthCompleteRequest, data, true);
         }
     }
- 
+
+    /// <summary>
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("CFF63B28-71BA-4891-9EF0-037896A08C1D")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PreauthResponse
     {
         public string PosRefId { get; }
@@ -210,6 +228,11 @@ namespace SPIClient
         public PurchaseResponse Details { get; }
 
         private Message _m;
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public PreauthResponse() { }
 
         public PreauthResponse(Message m)
         {
@@ -245,7 +268,7 @@ namespace SPIClient
         {
             var txType = _m.GetDataStringValue("transaction_type");
             switch (txType)
-            {   
+            {
                 case "PRE-AUTH":
                     return 0;
                 case "TOPUP":
@@ -265,12 +288,12 @@ namespace SPIClient
                     return 0;
             }
         }
-        
+
         public int GetCompletionAmount()
         {
             var txType = _m.GetDataStringValue("transaction_type");
             switch (txType)
-            {   
+            {
                 case "PCOMP":
                     return _m.GetDataIntValue("completion_amount");
                     break;

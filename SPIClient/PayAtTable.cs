@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -10,31 +11,39 @@ namespace SPIClient
     /// <summary>
     /// This class represents the BillDetails that the POS will be asked for throughout a PayAtTable flow.
     /// </summary>
+    [ComVisible(true)]
+    [Guid("F3190296-2734-42FC-B534-27695295D2B0")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class BillStatusResponse
     {
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public BillStatusResponse() { }
+
         /// <summary>
         /// Set this Error accordingly if you are not able to return the BillDetails that were asked from you.
         /// </summary>
         public BillRetrievalResult Result { get; set; }
-        
+
         /// <summary>
         /// This is a unique identifier that you assign to each bill.
         /// It migt be for example, the timestamp of when the cover was opened.
         /// </summary>
         public string BillId { get; set; }
-        
+
         /// <summary>
         /// This is the table id that this bill was for.
         /// The waiter will enter it on the Eftpos at the start of the PayAtTable flow and the Eftpos will 
         /// retrieve the bill using the table id. 
         /// </summary>
         public string TableId { get; set; }
-        
+
         /// <summary>
         /// The Total Amount on this bill, in cents.
         /// </summary>
         public int TotalAmount { get; set; }
-        
+
         /// <summary>
         /// The currently outsanding amount on this bill, in cents.
         /// </summary>
@@ -53,14 +62,14 @@ namespace SPIClient
             {
                 return new List<PaymentHistoryEntry>();
             }
-            
-            var bdArray = Convert.FromBase64String(BillData); 
+
+            var bdArray = Convert.FromBase64String(BillData);
             var bdStr = Encoding.UTF8.GetString(bdArray);
             var jsonSerializerSettings = new JsonSerializerSettings() {DateParseHandling = DateParseHandling.None};
             return JsonConvert.DeserializeObject<List<PaymentHistoryEntry>>(bdStr, jsonSerializerSettings);
         }
 
-        
+
         internal static string ToBillData(List<PaymentHistoryEntry> ph)
         {
             if (ph.Count < 1)
@@ -71,13 +80,13 @@ namespace SPIClient
             var bphStr = JsonConvert.SerializeObject(ph);
             return Convert.ToBase64String(Encoding.UTF8.GetBytes(bphStr));
         }
-        
+
         public Message ToMessage(string messageId)
         {
             var data = new JObject(
                     new JProperty("success", Result==BillRetrievalResult.SUCCESS)
             );
-            
+
             if (!string.IsNullOrWhiteSpace(BillId)) data.Add(new JProperty("bill_id", BillId));
             if (!string.IsNullOrWhiteSpace(TableId)) data.Add(new JProperty("table_id", TableId));
 
@@ -109,32 +118,43 @@ namespace SPIClient
         CARD,
         CASH
     }
-    
+
+    /// <summary>
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("2CE8031B-EF7E-4C79-8F98-DD0451FA91EA")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class BillPayment
     {
         public string BillId { get;}
         public string TableId { get;}
         public string OperatorId { get;}
-        
+
         public PaymentType PaymentType { get;}
-        
+
         public int PurchaseAmount { get; }
         public int TipAmount { get; }
 
         public PurchaseResponse PurchaseResponse { get; }
-        
+
         private Message _incomingAdvice;
-        
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public BillPayment() { }
+
         public BillPayment(Message m)
         {
             _incomingAdvice = m;
             BillId = _incomingAdvice.GetDataStringValue("bill_id");
             TableId = _incomingAdvice.GetDataStringValue("table_id");
             OperatorId = _incomingAdvice.GetDataStringValue("operator_id");
-            
+
             Enum.TryParse(_incomingAdvice.GetDataStringValue("payment_type"), true, out PaymentType pt);
             PaymentType = pt;
-            
+
             // this is when we ply the sub object "payment_details" into a purchase response for convenience.
             var purchaseMsg = new Message(m.Id, "payment_details", (JObject) m.Data.GetValue("payment_details"), false);
             PurchaseResponse = new PurchaseResponse(purchaseMsg);
@@ -143,21 +163,21 @@ namespace SPIClient
             TipAmount = PurchaseResponse.GetTipAmount();
         }
     }
-    
+
     internal class PaymentHistoryEntry
     {
         [JsonProperty("payment_type")]
         public string PaymentType;
 
-        [JsonProperty("payment_summary")] 
+        [JsonProperty("payment_summary")]
         public JObject PaymentSummary;
 
         [JsonConstructor()]
         public PaymentHistoryEntry()
         {
-            
+
         }
-        
+
         public string GetTerminalRefId()
         {
             var found = PaymentSummary.TryGetValue("terminal_ref_id", out var terminalRefId);
@@ -165,7 +185,13 @@ namespace SPIClient
             return null;
         }
     }
-    
+
+    /// <summary>
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("4AD0D23D-0C3C-4B3A-A3F7-55DD6F1089CC")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class PayAtTableConfig
     {
         public bool OperatorIdEnabled { get; set; }
@@ -205,14 +231,19 @@ namespace SPIClient
 
             return new Message(messageId, Events.PayAtTableSetTableConfig, data, true);
         }
-        
+
         internal static Message FeatureDisableMessage(string messageId){
             var data = new JObject(
                 new JProperty("pay_at_table_enabled", false)
             );
             return new Message(messageId, Events.PayAtTableSetTableConfig, data, true);
         }
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public PayAtTableConfig() { }
     }
-    
-    
+
+
 }

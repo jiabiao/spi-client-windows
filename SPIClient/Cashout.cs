@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 
 namespace SPIClient
@@ -27,7 +28,13 @@ namespace SPIClient
             return new Message(RequestIdHelper.Id("cshout"), Events.CashoutOnlyRequest, data, true);
         }
     }
-    
+
+    /// <summary>
+    /// These attributes work for COM interop.
+    /// </summary>
+    [ComVisible(true)]
+    [Guid("C9CED586-31DF-449B-BF13-69E1ACE9399F")]
+    [ClassInterface(ClassInterfaceType.AutoDual)]
     public class CashoutOnlyResponse
     {
         public bool Success { get; }
@@ -36,6 +43,11 @@ namespace SPIClient
         public string SchemeName { get; }
        
         private readonly Message _m;
+
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public CashoutOnlyResponse() { }
 
         public CashoutOnlyResponse(Message m)
         {

@@ -141,10 +141,15 @@ namespace SPIClient
     /// These attributes work for COM interop.
     /// </summary>
     [ComVisible(true)]
-    [Guid("A4E1A2E6-1B07-4116-9410-E79230F5F83A")]
+    [Guid("37434A4B-FE9B-4392-ADF5-7BF222C03B51")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class Message
     {
+        /// <summary>
+        /// This default stucture works for COM interop.
+        /// </summary>
+        public Message() { }
+
         [JsonProperty("id")]
         public string Id { get; }
 
