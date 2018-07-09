@@ -257,21 +257,24 @@ namespace SPIClient
     public static class LogManagerWrapper
     {
         private static readonly string LOG_CONFIG_FILE = @"path\to\log4net.config";
+        public static readonly string LOG_REPOSITORY = "SPIClient";
 
         public static ILog GetLogger(string type)
         {
             // If no loggers have been created, load our own.
-            if (LogManager.GetCurrentLoggers().Length == 0)
+            if (LogManager.GetCurrentLoggers(LOG_REPOSITORY).Length == 0)
             {
                 LoadConfig();
             }
-            return LogManager.GetLogger(type);
+            return LogManager.GetLogger(LOG_REPOSITORY, type);
         }
 
         private static void LoadConfig()
         {
+            var repository = LogManager.CreateRepository(LOG_REPOSITORY);
+
             //// TODO: Do exception handling for File access issues and supply sane defaults if it's unavailable.   
-            XmlConfigurator.ConfigureAndWatch(new FileInfo(LOG_CONFIG_FILE));
+            XmlConfigurator.ConfigureAndWatch(repository, new FileInfo(LOG_CONFIG_FILE));
         }
     }
 

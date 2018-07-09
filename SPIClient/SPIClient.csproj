@@ -1,115 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3BB60A49-EBA4-4099-8756-95A654A9329E}</ProjectGuid>
-    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SPIClient</RootNamespace>
-    <AssemblyName>SPIClient</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <PackageId>SPIClient</PackageId>
-    <PackageVersion>2.1.4</PackageVersion>
-    <Authors>Assembly Payments</Authors>
-    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/AssemblyPayments/spi-client-windows</PackageProjectUrl>
-    <PackageTags>assembly,payments,spi,api,client</PackageTags>
-    <Description>Windows Client Library for Assembly Payments' In-Store Integration.</Description>
-    <ReleaseVersion>2.1.4</ReleaseVersion>
-    <SynchReleaseVersion>false</SynchReleaseVersion>
-    <PackageReleaseNotes>Added GetRefundAmount to Refund Response</PackageReleaseNotes>
+    <Version>2.1.5</Version>
+    <Company>Assembly Payments</Company>
+    <Product>Instore</Product>
+    <Description>Client for Assembly Payments Instore Simple Payments Integration (SPI) API</Description>
+    <Copyright>Copyright ©  2018</Copyright>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>anycpu</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>SPIClient.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a">
-      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="SuperSocket.ClientEngine, Version=0.10.0.0, Culture=neutral, PublicKeyToken=ee9af13f57f00acc">
-      <HintPath>..\packages\SuperSocket.ClientEngine.Core.0.10.0\lib\net40-client\SuperSocket.ClientEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WebSocket4Net, Version=0.15.2.11, Culture=neutral, PublicKeyToken=eb4e154b696bf72a">
-      <HintPath>..\packages\WebSocket4Net.0.15.2\lib\net40\WebSocket4Net.dll</HintPath>
-    </Reference>
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="WebSocket4Net" Version="0.15.2" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Cashout.cs" />
-    <Compile Include="ComWrapper.cs" />
-    <Compile Include="Connection.cs" />
-    <Compile Include="ConnectionViaHttpAdaptor.cs" />
-    <Compile Include="Crypto.cs" />
-    <Compile Include="DiffieHellman.cs" />
-    <Compile Include="KeyRollingHelper.cs" />
-    <Compile Include="Messages.cs" />
-    <Compile Include="Pairing.cs" />
-    <Compile Include="PairingHelper.cs" />
-    <Compile Include="PayAtTable.cs" />
-    <Compile Include="PingHelper.cs" />
-    <Compile Include="Preauth.cs" />
-    <Compile Include="Purchase.cs" />
-    <Compile Include="PurchaseHelper.cs" />
-    <Compile Include="RequestIdHelper.cs" />
-    <Compile Include="Secrets.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settlement.cs" />
-    <Compile Include="Spi.cs" />
-    <Compile Include="SpiModels.cs" />
-    <Compile Include="SpiPayAtTable.cs" />
-    <Compile Include="SpiPreauth.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App.config" />
-    <None Include="packages.config" />
-    <None Include="SPIClient.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Readme.md" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" />
+
 </Project>

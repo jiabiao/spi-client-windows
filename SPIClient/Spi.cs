@@ -1559,7 +1559,7 @@ namespace SPIClient
         
         private SpiPreauth _spiPreauth;
         
-        private static readonly log4net.ILog _log = log4net.LogManager.GetLogger("spi");
+        private static readonly log4net.ILog _log = log4net.LogManager.GetLogger("SPIClient", "spi");
         
         private static readonly string _version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 

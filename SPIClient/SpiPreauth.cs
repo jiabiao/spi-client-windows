@@ -184,6 +184,6 @@ namespace SPIClient
                    || eventName == PreauthEvents.AccountVerifyResponse;
         }
 
-        private static readonly log4net.ILog _log = log4net.LogManager.GetLogger("spipreauth");
+        private static readonly log4net.ILog _log = log4net.LogManager.GetLogger("SPIClient","spipreauth");
     }
 }

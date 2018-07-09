@@ -142,7 +142,7 @@ namespace SPIClient
             _spi._send(Config.ToMessage(m.Id));
         }
 
-        private static readonly log4net.ILog _log = log4net.LogManager.GetLogger("spipat");
+        private static readonly log4net.ILog _log = log4net.LogManager.GetLogger("SPIClient", "spipat");
 
     }
 
